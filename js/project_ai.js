@@ -1,3 +1,13 @@
+function start(){
+  var Name = prompt("Please enter your name", "ai");
+  document.getElementById("yourName").innerHTML = Name;
+}
+$(function() {
+  $('.selectImages').hide();
+  $('#btnStart').click(function(){
+    $('.selectImages').slideDown(1000);
+  });
+});
 var score = 0;
 function game(personAnswer){
   while(-300 < score && score < 300){
@@ -5,8 +15,9 @@ function game(personAnswer){
     var janken = ["Rock","Scissors","Pepar"];
     var computerAnswer = janken[Math.floor( Math.random() * janken.length)];//Computer pic one of those from array
     document.getElementById("imgComputer").src = "img/" + computerAnswer + ".png";//Show image of computer's answer
+    document.getElementById("imgPerson").src = "img/" + personAnswer + ".png";//Show image of computer's answer
     if(personAnswer == computerAnswer){
-      result = "Even";
+      result = "Tie";
     }
     if(personAnswer == "Rock"){
       if(computerAnswer == "Scissors"){
@@ -38,33 +49,11 @@ function game(personAnswer){
     if(result == "Lose"){
       score = score - 100;
     }
-    document.getElementById("Result").innerHTML = "<p>" + personAnswer + "!! " + result + "</p>";
-    document.getElementById("Score").innerHTML = "<p>TotalScore : " + score + "</p>";
+    document.getElementById("Result").innerHTML = personAnswer + "!! " + result;
+    document.getElementById("Score").innerHTML = score;
     break;
   }
   if(-300 == score || score == 300){// if score is 300 or -300 game end
     document.getElementById("End").innerHTML = "<p>Game End</p>";
   }
 }
-
-var data = [2, 1, 5, 3, 6];
-var bucket = [];
-var sortBucket = [];
-var max = 600;
-for(var i = 0; i < max; i++){// create max numbert of bucket
-  bucket[i] = 0;// input 0
-}
-for(var i=0; i<bucket.length; i++) {
-  for(var j=0; j<data.length; j++) {
-    if( i == data[j]){
-      bucket[i] = data[j];
-    }
-  }
-}
-console.log("bucket : " + bucket);
-for(var i=0; i<bucket.length; i++) {
-  if(bucket[i] != 0){
-    sortBucket.push(bucket[i]);
-  }
-}
-console.log("sortBucket : " + sortBucket);
